@@ -8,11 +8,7 @@ next(lotto_csv)
 lotto_num = []
 even_odd = []
 even_odd_percent = []
-a = []
-for i in range(1,46,1):
-    a.append('{}'.format(i))
 
-lotto = list(combinations(a,6))
  
 #홀짝 분석 
 #당첨번호에서 홀과 짝의 비율을 말한다
@@ -51,6 +47,12 @@ plt.ylabel('percent')
 plt.bar(range(len(even_odd_percent)),even_odd_percent)
 
 '''
+#8145060가지 조합 모든 경우의수 
+a = []
+for i in range(1,46,1):
+    a.append('{}'.format(i))
+lotto = list(combinations(a,6))
+
 even_odd = []
 for i in lotto:
     for j in range(6):
@@ -76,5 +78,4 @@ df = pd.concat([even_odd_percent,even_odd_percent1],axis = 1)
 df[[0,1]].plot(kind = 'bar')
 plt.legend(labels = ['902회차','모든 경우의 수'])
 plt.xticks(rotation =0)
-
 '''
