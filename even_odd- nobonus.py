@@ -2,6 +2,12 @@ import matplotlib.pyplot as plt
 import pandas as pd
 import csv
 from itertools import combinations
+import matplotlib.pyplot as plt
+import pandas as pd
+from matplotlib import font_manager, rc
+from matplotlib import style
+font_name = font_manager.FontProperties(fname="c:/Windows/Fonts/malgun.ttf").get_name()
+rc('font', family=font_name)
 file = open("c:/data/lotto_ball_nobonus.csv","r")
 lotto_csv = csv.reader(file)
 next(lotto_csv)
@@ -34,19 +40,11 @@ for i in lotto_num:
     
 
 s = pd.Series(even_odd) 
-even_odd_percent = s.value_counts(normalize=True) #normalize옵션으로 비율 구하기
-even_odd_percent = even_odd_percent.sort_index()
+round_902_pct = s.value_counts(normalize=True) #normalize옵션으로 비율 구하기
+round_902_pct = round_902_pct.sort_index()
 
-print(even_odd_percent*100)
  
-a = plt.subplot()
-a.set_xticks([0,1,2,3,4,5,6])
-a.set_xticklabels(['0:6','1:5','2:4','3:3','4:2','5:1','6:0'])
-plt.xlabel('EVEN:ODD')
-plt.ylabel('percent')
-plt.bar(range(len(even_odd_percent)),even_odd_percent)
 
-'''
 #8145060가지 조합 모든 경우의수 
 a = []
 for i in range(1,46,1):
@@ -66,16 +64,17 @@ for i in lotto:
     
     
 s1 = pd.Series(even_odd) 
-even_odd_percent1 = s1.value_counts(normalize=True) #normalize옵션으로 비율 구하기
-even_odd_percent1 = even_odd_percent1.sort_index()
+all_case = s1.value_counts(normalize=True) #normalize옵션으로 비율 구하기
+all_case = all_case.sort_index()
 
-print(even_odd_percent1*100)
+print(all_case*100)
  
-df = pd.concat([even_odd_percent,even_odd_percent1],axis = 1)
+df = pd.concat([round_902_pct,all_case],axis = 1)
 
+round_902_pct.iloc[2:5].sum()*100
+all_case.iloc[2:5].sum()*100
 
 
 df[[0,1]].plot(kind = 'bar')
 plt.legend(labels = ['902회차','모든 경우의 수'])
 plt.xticks(rotation =0)
-'''
