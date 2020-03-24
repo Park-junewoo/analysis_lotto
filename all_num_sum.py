@@ -90,4 +90,5 @@ df.columns = ['sum_902_pct','all_pct']
 df.plot(kind = 'bar')
 plt.legend(labels = ['902회차','모든 경우의 수'])
 plt.xticks(rotation =70)
+plt.title("번호의 합")
 print("작업시간 :", time.time() - start)
