@@ -50,10 +50,21 @@ a = a.T
 
 a.rename(columns = {0:'3times',1:'4times',2:'5times',3:'7times'}, inplace = True) 
 
+#모든 배수가 0이 아닌 경우
+a1 = a[(a['3times']>0)&(a['4times']>0)&(a['5times']>0)&(a['7times']>0)] 
 
-a[(a['3times']>0)&(a['4times']>0)&(a['5times']>0)&(a['7times']>0)] 
+#한 배수만 없는 경우
+a2 = a[(a['3times']==0)&(a['4times']>0)&(a['5times']>0)&(a['7times']>0)] 
+a3 = a[(a['3times']>0)&(a['4times']==0)&(a['5times']>0)&(a['7times']>0)] 
+a4 = a[(a['3times']>0)&(a['4times']>0)&(a['5times']==0)&(a['7times']>0)] 
+a5 = a[(a['3times']>0)&(a['4times']>0)&(a['5times']>0)&(a['7times']==0)] 
 
+x = pd.concat([a2,a3,a4,a5]).sort_index()
 
+b = pd.concat([a1,a2,a3,a4,a5])
+
+b = b.sort_index()
+len(b)/len(a)*100
 #b = a[(a['3times']==0)]  
 #len(b)/len(a)*100
 
