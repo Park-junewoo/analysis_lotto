@@ -78,3 +78,4 @@ all_case.iloc[2:5].sum()*100
 df[[0,1]].plot(kind = 'bar')
 plt.legend(labels = ['902회차','모든 경우의 수'])
 plt.xticks(rotation =0)
+plt.title("홀 : 짝 비율")
